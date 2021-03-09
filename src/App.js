@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ToDoList from "./views/components/ToDoList";
 import NewToDoItem from "./views/components/NewToDoItem";
 
@@ -7,6 +7,10 @@ import { connect } from "react-redux";
 import "./App.css";
 
 function App(props) {
+  useEffect(() => {
+    props.dispatch(ToDoActions.list());
+  }, []);
+
   return (
     <div className="App">
       <NewToDoItem

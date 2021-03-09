@@ -2,15 +2,10 @@ import * as ToDoConstants from "../actions/ToDoActions";
 
 const ToDoReducer = (items = [], action) => {
   switch (action.type) {
+    case ToDoConstants.TODO_LIST:
+      return action.items;
     case ToDoConstants.TODO_CREATE:
-      return [
-        ...items,
-        {
-          id: Date.now(),
-          isChecked: false,
-          description: action.description,
-        },
-      ];
+      return [...items, action.newItem];
     case ToDoConstants.TODO_UPDATE:
       return items.map((item) => {
         if (item.id === action.item.id) {
