@@ -5,10 +5,13 @@ import App from "./App";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
-import thunkMiddleware from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
 import rootReducer from "./data/reducers";
+import ToDoSaga from "./data/sagas/ToDoSaga";
 
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(ToDoSaga);
 
 ReactDOM.render(
   <React.StrictMode>
